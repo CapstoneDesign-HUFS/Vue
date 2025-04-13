@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>모달창</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <style>
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+    
+    .modal {
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      padding: 20px 24px; /* 목적지 모달과 동일한 패딩 */
+      width: 100%; /* 너비 조정 */
+      max-width: 350px; 
+      margin: 0 10px;
+    }
+    
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .info {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 70%;
+      padding-left: 4px;
+    }
+    
+    .info-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0; /* 패딩 제거 */
+      margin: 0; /* 간격 조정 */
+    }
+    
+    .label {
+      color: #777;
+      font-size: 16px; /* 목적지 모달과 동일한 크기 */
+      white-space: nowrap;
+      font-weight: 400;
+    }
+    
+    .value {
+      font-weight: 600;
+      font-size: 16px; /* 목적지 모달과 동일한 크기 */
+      color: #333; /* 목적지 모달과 동일한 색상 */
+      text-align: right;
+      margin-left: auto; /* 목적지 모달과 동일 */
+    }
+    
+    .icon-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .circle {
+      background: linear-gradient(135deg, #d6ff8d 0%, #a3e956 100%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(160, 230, 92, 0.3);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .circle:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(160, 230, 92, 0.5);
+    }
+    
+    .circle:active {
+      transform: scale(0.95);
+      box-shadow: 0 1px 4px rgba(160, 230, 92, 0.4);
+    }
+    
+    .icon {
+      width: 22px;
+      height: 22px;
+    }
+    
+    .icon-label {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #333;
+      text-align: center;
+    }
+
+    @media (max-width: 360px) {
+      .modal {
+        width: 100%; /* 너비 수정 */
+        padding: 16px 20px; /* 목적지 모달과 동일 */
+      }
+      
+      .info-row {
+        padding: 0; /* 패딩 제거 */
+      }
+      
+      .label {
+        font-size: 15px; /* 목적지 모달과 동일 */
+      }
+      
+      .value {
+        font-size: 15px; /* 목적지 모달과 동일 */
+      }
+      
+      .circle {
+        width: 45px;
+        height: 45px;
+      }
+      
+      .icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="modal">
+    <div class="content">
+      <div class="info">
+        <div class="info-row">
+          <span class="label">예상소요시간</span>
+          <span class="value">25분</span>
+        </div>
+        <div class="info-row">
+          <span class="label">예상이동거리</span>
+          <span class="value">1.2km</span>
+        </div>
+      </div>
+      <div class="icon-box">
+        <div class="circle">
+          <svg class="icon" fill="black" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+          </svg>
+        </div>
+        <span class="icon-label">속도안내</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
