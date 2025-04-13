@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bottom Navigation Bar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+        }
+        
+        body {
+            height: 100vh;
+            position: relative;
+        }
+        
+        .bottom-navigation {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px; /* 높이 증가 */
+            background-color: #ffffff;
+            border-top: 1px solid #e2e2e2;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            padding-bottom: 20px; /* 홈 인디케이터를 위한 여백 추가 */
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 33.33%;
+            height: 100%;
+            cursor: pointer;
+            padding-top: 8px; /* 상단 여백 추가 */
+        }
+        
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 8px; /* 아이콘과 텍스트 사이 여백 증가 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .nav-label {
+            font-size: 12px;
+            color: #888888;
+        }
+        
+        .nav-item.active .nav-label {
+            color: #38c16f;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="bottom-navigation">
+        <div class="nav-item" id="report-tab">
+            <div class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                  <path d="M18 20V10" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12 20V4" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M6 20V14" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="nav-label">리포트</div>
+        </div>
+        
+        <div class="nav-item active" id="home-tab">
+            <div class="nav-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <!-- 집 외곽선 -->
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="#38c16f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <!-- 집 내부 문 -->
+                    <polyline points="9 22 9 12 15 12 15 22" stroke="#38c16f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline>
+                </svg>
+            </div>
+            <div class="nav-label">홈</div>
+        </div>
+        
+        <div class="nav-item" id="my-tab">
+            <div class="nav-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <!-- 사람 몸통 (항상 회색) -->
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <!-- 사람 머리 (활성화 시 녹색으로 변함) -->
+                    <circle cx="12" cy="7" r="4" stroke="#888888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle>
+                </svg>
+            </div>
+            <div class="nav-label">MY</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.nav-item');
+            
+            // 초기 상태 설정 (홈 탭이 활성화 상태)
+            updateActiveTab(document.getElementById('home-tab'));
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // 모든 탭 비활성화
+                    resetAllTabs();
+                    
+                    // 클릭한 탭 활성화
+                    updateActiveTab(this);
+                });
+            });
+            
+            // 모든 탭을 비활성화 상태로 리셋
+            function resetAllTabs() {
+                tabs.forEach(tab => {
+                    // 활성화 클래스 제거
+                    tab.classList.remove('active');
+                    
+                    // 모든 아이콘 비활성화 - 모든 요소 회색으로
+                    const paths = tab.querySelectorAll('svg path, svg polyline, svg circle');
+                    paths.forEach(path => {
+                        path.setAttribute('stroke', '#888888');
+                    });
+                    
+                    // 라벨 색상 변경
+                    tab.querySelector('.nav-label').style.color = '#888888';
+                });
+            }
+            
+            // 선택한 탭을 활성화 상태로 업데이트
+            function updateActiveTab(tab) {
+                // 활성화 클래스 추가
+                tab.classList.add('active');
+                
+                // 모든 아이콘 활성화 - 모든 요소 녹색으로
+                const paths = tab.querySelectorAll('svg path, svg polyline, svg circle');
+                paths.forEach(path => {
+                    path.setAttribute('stroke', '#38c16f');
+                });
+                
+                // 라벨 색상 변경
+                tab.querySelector('.nav-label').style.color = '#38c16f';
+            }
+        });
+    </script>
+</body>
+</html>
