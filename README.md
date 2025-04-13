@@ -1,7 +1,7 @@
 # Vue
 
 - pages
-  - 온보딩[https://capstonedesign-hufs.github.io/Vue/views/onboarding.html]
+  - 온보딩(https://capstonedesign-hufs.github.io/Vue/views/onboarding.html)
   - Sign Up[https://capstonedesign-hufs.github.io/Vue/views/signup.html]
   - Sign In[https://capstonedesign-hufs.github.io/Vue/views/signin.html]
   - 초기속도설정[https://capstonedesign-hufs.github.io/Vue/views/initial-speed.html]
